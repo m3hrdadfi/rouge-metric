@@ -179,7 +179,7 @@ You just need to provide the regex and best stemmer package for the language you
 |            Sichuan Yi; Nuosu           |       ii      |        |
 |                 Inupiaq                |       ik      |        |
 |                   Ido                  |       io      |        |
-|                Icelandic               |       is      |        |
+|                Icelandic               |       is      |   ✅    |
 |                 Italian                |       it      |        |
 |                Inuktitut               |       iu      |        |
 |                Japanese                |       ja      |        |
