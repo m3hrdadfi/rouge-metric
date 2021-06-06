@@ -23,32 +23,38 @@ from __future__ import print_function
 import re
 import six
 
+from . import languages
 
-def tokenize(text, stemmer):
-  """Tokenize input text into a list of tokens.
 
-  This approach aims to replicate the approach taken by Chin-Yew Lin in
-  the original ROUGE implementation.
+def tokenize(text, language, stemmer):
+    """Tokenize input text into a list of tokens.
 
-  Args:
-    text: A text blob to tokenize.
-    stemmer: An optional stemmer.
+    This approach aims to replicate the approach taken by Chin-Yew Lin in
+    the original ROUGE implementation.
 
-  Returns:
-    A list of string tokens extracted from input text.
-  """
+    Args:
+      text: A text blob to tokenize.
+      language: Handling text language.
+      stemmer: An optional stemmer.
 
-  # Convert everything to lowercase.
-  text = text.lower()
-  # Replace any non-alpha-numeric characters with spaces.
-  text = re.sub(r"[^a-z0-9]+", " ", six.ensure_str(text))
+    Returns:
+      A list of string tokens extracted from input text.
+    """
 
-  tokens = re.split(r"\s+", text)
-  if stemmer:
-    # Only stem words more than 3 characters long.
-    tokens = [stemmer.stem(x) if len(x) > 3 else x for x in tokens]
+    regex = languages.languages.get(language, "a-z0-9")
 
-  # One final check to drop any empty or invalid tokens.
-  tokens = [x for x in tokens if re.match(r"^[a-z0-9]+$", six.ensure_str(x))]
+    # Convert everything to lowercase.
+    text = text.lower()
 
-  return tokens
+    # Replace any non-alpha-numeric characters with spaces.
+    text = re.sub(r"[^" + regex + "]+", " ", six.ensure_str(text))
+
+    tokens = re.split(r"\s+", text)
+    if stemmer:
+        # Only stem words more than 3 characters long.
+        tokens = [stemmer.stem(x) if len(x) > 3 else x for x in tokens]
+
+    # One final check to drop any empty or invalid tokens.
+    tokens = [x for x in tokens if re.match(r"^[" + regex + "]+$", six.ensure_str(x))]
+
+    return tokens
