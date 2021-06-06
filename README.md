@@ -14,8 +14,7 @@ implemented based on [HF metrics](https://huggingface.co/metrics/rouge) for ever
 
 ```bash
 # requirement packages
-
-pip install -r requirements.txt
+# pip install -r requirements.txt
 git clone https://github.com/m3hrdadfi/rouge-metric .
 ```
 
