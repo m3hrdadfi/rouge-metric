@@ -1,5 +1,7 @@
 import hazm
+from TurkishStemmer import TurkishStemmer
 from nltk.stem import porter
+from nltk.stem.snowball import HungarianStemmer
 
 stemmers = {
     "aa": None,
@@ -63,7 +65,7 @@ stemmers = {
     "ho": None,
     "hr": None,
     "ht": None,
-    "hu": None,
+    "hu": HungarianStemmer(),
     "hy": None,
     "hz": None,
     "ia": None,
@@ -166,7 +168,7 @@ stemmers = {
     "tl": None,
     "tn": None,
     "to": None,
-    "tr": None,
+    "tr": TurkishStemmer(),
     "ts": None,
     "tt": None,
     "tw": None,

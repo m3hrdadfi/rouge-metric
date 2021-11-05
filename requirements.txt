@@ -4,3 +4,4 @@ nltk
 numpy
 six>=1.14
 hazm
+TurkishStemmer
