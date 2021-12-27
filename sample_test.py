@@ -2,7 +2,6 @@ from datasets import load_metric
 
 metric = load_metric("./rouge")
 
-
 # Language: en-English
 references = ["The quick brown fox jumps over the lazy dog"]
 predictions = ["The quick brown fox jumps over the lazy dog"]
@@ -28,3 +27,29 @@ predictions = ["گربه سیاه سریع از روی روباه تنبل می�
 result = metric.compute(predictions=predictions, references=references, language="fa")
 result = {key: round(value.mid.fmeasure, 4) * 100 for key, value in result.items()}
 print(f"Language: Persian, result: {result}")
+
+# Language: tr-Turkish
+references = ["Yurtta sulh cihanda sulh"]
+predictions = ["Yurtta sulh cihanda sulh"]
+result = metric.compute(predictions=predictions, references=references, language="tr", use_stemmer=True)
+result = {key: round(value.mid.fmeasure, 4) * 100 for key, value in result.items()}
+print(f"Language: Turkish, result: {result}")
+
+references = ["Yurtta sulh cihanda sulh"]
+predictions = ["Yurtta barış dünyada barış"]
+result = metric.compute(predictions=predictions, references=references, language="tr", use_stemmer=True)
+result = {key: round(value.mid.fmeasure, 4) * 100 for key, value in result.items()}
+print(f"Language: Turkish, result: {result}")
+
+# Language: hu-Hungarian
+references = ["Aki mer az nyer"]
+predictions = ["Aki mer az nyer"]
+result = metric.compute(predictions=predictions, references=references, language="hu", use_stemmer=True)
+result = {key: round(value.mid.fmeasure, 4) * 100 for key, value in result.items()}
+print(f"Language: Hungarian, result: {result}")
+
+references = ["Aki mer az nyer"]
+predictions = ["Aki mer az veszít"]
+result = metric.compute(predictions=predictions, references=references, language="hu", use_stemmer=True)
+result = {key: round(value.mid.fmeasure, 4) * 100 for key, value in result.items()}
+print(f"Language: Hungarian, result: {result}")
